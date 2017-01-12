@@ -1,4 +1,4 @@
-package skirmish;
+package skirmish.ai;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
@@ -13,5 +13,12 @@ public class EntityAIAvoidSwellingCreeper extends EntityAIAvoidEntity<EntityCree
     public boolean shouldExecute() {
         boolean result = super.shouldExecute();
         return result && closestLivingEntity.getCreeperState() == 1 && closestLivingEntity != theEntity;
+    }
+
+    @Override
+    public void updateTask() {
+        super.updateTask();
+        if(theEntity instanceof EntityCreeper)
+            ((EntityCreeper)theEntity).setCreeperState(-1);
     }
 }
